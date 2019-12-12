@@ -3,10 +3,6 @@ class ArticlesController < ApplicationController
     @articles = Article.all
   end
 
-  def show
-    @article = Article.find(params[:id])
-  end
-
   def new
     @article = Article.new
   end
@@ -20,4 +16,17 @@ class ArticlesController < ApplicationController
   end
 
   # add edit and update methods here
+  def edit 
+    @article = Article.find(params[:id])
+  end 
+
+  def update 
+    @article = Article.find(params[:id])
+    @article.update(title: params[:article][:title], description: params[:article][:description])
+    redirect_to article_path(@article)
+  end 
+
+  def show
+    @article = Article.find(params[:id])
+  end
 end
